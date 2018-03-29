@@ -2,6 +2,7 @@ package com.example.senamit.fitnesstime;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -36,6 +37,7 @@ public class FitnessExercise {
     @ColumnInfo(name = "bookmarked")
     private String exerciseBookmarked;
 
+    @Ignore
     public FitnessExercise(String exerciseType, String exerciseName, String exerciseBodyPart, String exerciseWorkOut, String exerciseDescription, String exerciseBookmarked) {
         this.exerciseType = exerciseType;
         this.exerciseName = exerciseName;
@@ -45,6 +47,9 @@ public class FitnessExercise {
         this.exerciseBookmarked = exerciseBookmarked;
     }
 
+    public FitnessExercise(String exerciseName) {
+        this.exerciseName = exerciseName;
+    }
 
     @NonNull
     public int getExercise_id() {
