@@ -14,13 +14,14 @@ import java.util.List;
 public interface FitnessExerciseDao {
 
     @Insert
-     void InsertExerciseList(FitnessExercise fitnessExercise);
+     void insertExerciseList(FitnessExercise fitnessExercise);
 
     @Query("DELETE FROM exercise_list")
     void  deleteAllExerciseList();
 
     @Query("SELECT * FROM exercise_list")
-    LiveData<List<FitnessExercise>> getAllFitnessExerciseList();
+    List<FitnessExercise> getAllFitnessExerciseList();
+//    LiveData<List<FitnessExercise>> getAllFitnessExerciseList();
 
 
 }

@@ -53,6 +53,8 @@ public class ExerciseTypeAdapter extends RecyclerView.Adapter<ExerciseTypeAdapte
         notifyDataSetChanged();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtExerciseName;
