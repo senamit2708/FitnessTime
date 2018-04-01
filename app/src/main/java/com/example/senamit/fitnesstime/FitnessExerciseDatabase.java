@@ -37,6 +37,7 @@ public abstract class FitnessExerciseDatabase extends RoomDatabase {
 
     private static RoomDatabase.Callback sRoomDatabase = new FitnessExerciseDatabase.Callback(){
 
+
         //optionally try to use onopen for dev coding purpose
 //        @Override
 //        public void onOpen(@NonNull SupportSQLiteDatabase db) {
