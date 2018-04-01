@@ -3,6 +3,9 @@ package com.example.senamit.fitnesstime;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by senamit on 31/3/18.
  */
@@ -11,6 +14,7 @@ public class PopulateDBSync extends AsyncTask<Void, Void, Void>{
 
     private static final String LOG_TAG = PopulateDBSync.class.getSimpleName();
     private FitnessExerciseDao mFitnessExerciseDao;
+    private List<FitnessExercise> fitnessExerciseList;
 
     public PopulateDBSync(FitnessExerciseDatabase db) {
 
@@ -21,10 +25,14 @@ public class PopulateDBSync extends AsyncTask<Void, Void, Void>{
     @Override
     protected Void doInBackground(Void... params) {
         mFitnessExerciseDao.deleteAllExerciseList();
-        FitnessExercise fitnessExercise = new FitnessExercise("priyanka");
-        FitnessExercise fitnessExercise2 = new FitnessExercise("amit");
-        mFitnessExerciseDao.insertExerciseList(fitnessExercise);
-        mFitnessExerciseDao.insertExerciseList(fitnessExercise2);
+
+        fitnessExerciseList = new ArrayList<FitnessExercise>();
+        fitnessExerciseList.add(new FitnessExercise("priyanka1", "patro1"));
+        fitnessExerciseList.add(new FitnessExercise("priyanka2", "patro2"));
+        fitnessExerciseList.add(new FitnessExercise("priyanka3", "patro3"));
+        fitnessExerciseList.add(new FitnessExercise("priyanka4", "patro4"));
+        mFitnessExerciseDao.insertAllExercisesList(fitnessExerciseList);
+
 
 
         return null;
