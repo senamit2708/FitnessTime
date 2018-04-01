@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,6 @@ public class ExerciseTypeActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ExerciseTypeAdapter exerciseTypeAdapter;
      ExerciseTypeViewModel mViewModel;
-
     List<FitnessExercise> fitnessExerciseList;
 
     @Override
@@ -28,14 +28,13 @@ public class ExerciseTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_type);
 
-//        mViewModel = ViewModelProviders.of(this).get(ExerciseTypeViewModel.class);
         mViewModel = ViewModelProviders.of(this).get(ExerciseTypeViewModel.class);
         recyclerView = findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         exerciseTypeAdapter = new ExerciseTypeAdapter(this);
-//        exerciseTypeAdapter.setExercise(fitnessExerciseList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(exerciseTypeAdapter);
+
 
 
 //        mViewModel.getmFitnessExerciseList().observe(this, new Observer<List<FitnessExercise>>() {
@@ -47,7 +46,8 @@ public class ExerciseTypeActivity extends AppCompatActivity {
 
       fitnessExerciseList =  mViewModel.getmFitnessExerciseList();
         exerciseTypeAdapter.setExercise(fitnessExerciseList);
-//
+        Log.i(LOG_TAG, "inside the oncreate of main activity 5");
+
 
     }
 }

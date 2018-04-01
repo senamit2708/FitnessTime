@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,60 +17,47 @@ public class FitnessRepository {
 
     private  FitnessExerciseDao fitnessExerciseDao;
 //    private LiveData<List<FitnessExercise>> fitnessExerciseList;
-       List<FitnessExercise> fitnessExerciseList;
+       List<FitnessExercise> fitnessExerciseList= new ArrayList<FitnessExercise>();
         Application application;
     FitnessExerciseDatabase db;
 
 
 
     public FitnessRepository(Application application) {
-
         Log.i(LOG_TAG, "inside the fitness repository constructor");
         db = FitnessExerciseDatabase.getDatabase(application);
-        Log.i(LOG_TAG, "inside the fitness repository constructor 2");
-        fitnessExerciseDao = db.fitnessExerciseDao();
-        Log.i(LOG_TAG, "inside the fitness repository constructor 3");
-        fitnessExerciseList=  new showAsyncTask(fitnessExerciseDao).doInBackground();
-        Log.i(LOG_TAG, "inside the fitness repository constructor 4");
+    }
+
+    private void getDatbase(FitnessExerciseDatabase db) {
+
+    }
+
+    private void loadData(final FitnessExerciseDatabase db) {
+        new AsyncTask<Void, Void, List<FitnessExercise>>(){
+            FitnessExerciseDao fitnessExerciseDao=db.fitnessExerciseDao();
+
+            @Override
+            protected List<FitnessExercise> doInBackground(Void... voids) {
+                return fitnessExerciseDao.getAllFitnessExerciseList();
+            }
+
+            @Override
+            protected void onPostExecute(List<FitnessExercise> fitnessExercises) {
+                super.onPostExecute(fitnessExercises);
+                fitnessExerciseList.addAll(fitnessExercises);
+            }
+        }.execute();
     }
 
 //    public LiveData<List<FitnessExercise>> getFitnessExerciseList() {
 //        return fitnessExerciseList;
 //    }
 
-    public List<FitnessExercise> getFitnessExerciseList() {
+
+    List<FitnessExercise> getFitnessExerciseList() {
+        loadData(db);
         return fitnessExerciseList;
     }
 
-
-
-//    private class showAsyncTask extends AsyncTaskLoader<List<FitnessExercise>> {
-//
-//
-//        public showAsyncTask(Context context) {
-//            super(context);
-//        }
-//
-//        @Override
-//        public List<FitnessExercise> loadInBackground() {
-//            Log.e(LOG_TAG, "inside load in background for test");
-//            return fitnessExerciseDao.getAllFitnessExerciseList();
-//        }
-//    }
-    private static class showAsyncTask extends AsyncTask<Void, Void, List<FitnessExercise>>{
-
-        private FitnessExerciseDao asyncDao;
-
-    public showAsyncTask(FitnessExerciseDao dao) {
-        asyncDao = dao;
-    }
-
-    @Override
-    protected List<FitnessExercise> doInBackground(Void... voids) {
-                    Log.e(LOG_TAG, "inside load in background for test");
-
-            return asyncDao.getAllFitnessExerciseList();
-    }
-}
 
 }
