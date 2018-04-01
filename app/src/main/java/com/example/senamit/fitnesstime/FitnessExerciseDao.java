@@ -19,12 +19,20 @@ public interface FitnessExerciseDao {
     @Insert
     void insertAllExercisesList(List<FitnessExercise> fitnessExercises);
 
+    @Insert
+    void insertAllExerciseType(List<FitnessExerciseType> fitnessExerciseType );
+
+    @Query("DELETE FROM exericse_type")
+    void deleteAllExerciseType();
+
     @Query("DELETE FROM exercise_list")
     void  deleteAllExerciseList();
 
-    @Query("SELECT id, exercise_name FROM exercise_list")
+    @Query("SELECT * FROM exercise_list")
     LiveData<List<FitnessExercise>> getAllFitnessExerciseList();
 
 
+    @Query("SELECT * FROM exericse_type")
+    LiveData<List<FitnessExerciseType>> getExerciseTypeList();
 
 }

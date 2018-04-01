@@ -18,7 +18,7 @@ public class ExerciseTypeAdapter extends RecyclerView.Adapter<ExerciseTypeAdapte
 
     private static final String LOG_TAG = ExerciseTypeAdapter.class.getSimpleName();
     private Context context;
-    private List<FitnessExercise> fitnessExerciseList;
+    private List<FitnessExerciseType> fitnessExerciseList;
 
     public ExerciseTypeAdapter(Context context) {
         this.context = context;
@@ -34,8 +34,8 @@ public class ExerciseTypeAdapter extends RecyclerView.Adapter<ExerciseTypeAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         if (fitnessExerciseList!=null){
-            FitnessExercise current = fitnessExerciseList.get(position);
-            holder.txtExerciseName.setText(current.getExerciseName());
+            FitnessExerciseType current = fitnessExerciseList.get(position);
+            holder.txtExerciseName.setText(current.getExercise_type());
         }else {
             holder.txtExerciseName.setText("No exercise Listed");
         }
@@ -53,7 +53,7 @@ public class ExerciseTypeAdapter extends RecyclerView.Adapter<ExerciseTypeAdapte
         }
     }
 
-    void setExercise(List<FitnessExercise> mFitnessExercise){
+    void setExercise(List<FitnessExerciseType> mFitnessExercise){
         fitnessExerciseList = mFitnessExercise;
         notifyDataSetChanged();
     }

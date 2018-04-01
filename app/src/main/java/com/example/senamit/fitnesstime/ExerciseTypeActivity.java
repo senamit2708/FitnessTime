@@ -33,9 +33,9 @@ public class ExerciseTypeActivity extends AppCompatActivity {
 
 
 
-        mViewModel.getmFitnessExerciseList().observe(this, new Observer<List<FitnessExercise>>() {
+        mViewModel.getmFitnessExerciseList().observe(this, new Observer<List<FitnessExerciseType>>() {
             @Override
-            public void onChanged(@Nullable List<FitnessExercise> fitnessExercises) {
+            public void onChanged(@Nullable List<FitnessExerciseType> fitnessExercises) {
                 exerciseTypeAdapter.setExercise(fitnessExercises);
             }
         });

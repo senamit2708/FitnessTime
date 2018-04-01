@@ -16,7 +16,7 @@ public class FitnessRepository {
 
     private static final String LOG_TAG = FitnessRepository.class.getSimpleName();
 
-     LiveData<List<FitnessExercise>> fitnessExerciseList;
+     LiveData<List<FitnessExerciseType>> fitnessExerciseList;
     FitnessExerciseDatabase db;
 
 
@@ -25,11 +25,11 @@ public class FitnessRepository {
         Log.i(LOG_TAG, "inside the fitness repository constructor");
         db = FitnessExerciseDatabase.getDatabase(application);
         FitnessExerciseDao fitnessExerciseDao=db.fitnessExerciseDao();
-        fitnessExerciseList=fitnessExerciseDao.getAllFitnessExerciseList();
+        fitnessExerciseList=fitnessExerciseDao.getExerciseTypeList();
     }
 
 
-    public LiveData<List<FitnessExercise>> getFitnessExerciseList() {
+    public LiveData<List<FitnessExerciseType>> getFitnessExerciseList() {
         return fitnessExerciseList;
     }
 

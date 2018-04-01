@@ -21,6 +21,10 @@ public class FitnessExercise {
     @ColumnInfo(name = "exercise_type")
     private String exerciseType;
 
+
+    @ColumnInfo(name = "exercise_type_id")
+    private int exerciseTypeId;
+
 //    @PrimaryKey
 //    @NonNull
     @ColumnInfo(name = "exercise_name")
@@ -40,7 +44,8 @@ public class FitnessExercise {
     private String exerciseBookmarked;
 
     @Ignore
-    public FitnessExercise(String exerciseType, String exerciseName, String exerciseBodyPart, String exerciseWorkOut, String exerciseDescription, String exerciseBookmarked) {
+    public FitnessExercise(int exerciseTypeId,String exerciseType, String exerciseName, String exerciseBodyPart, String exerciseWorkOut, String exerciseDescription, String exerciseBookmarked) {
+        this.exerciseTypeId= exerciseTypeId;
         this.exerciseType = exerciseType;
         this.exerciseName = exerciseName;
         this.exerciseBodyPart = exerciseBodyPart;
@@ -54,17 +59,18 @@ public class FitnessExercise {
 //    }
 
 
-    public FitnessExercise(String exerciseType, String exerciseName) {
+    public FitnessExercise(int exerciseTypeId, String exerciseType, String exerciseName) {
+        this.exerciseTypeId= exerciseTypeId;
         this.exerciseType = exerciseType;
         this.exerciseName = exerciseName;
     }
 
-    @NonNull
+
     public int getExercise_id() {
         return exercise_id;
     }
 
-    public void setExercise_id(@NonNull int exercise_id) {
+    public void setExercise_id(int exercise_id) {
         this.exercise_id = exercise_id;
     }
 
@@ -114,5 +120,13 @@ public class FitnessExercise {
 
     public void setExerciseBookmarked(String exerciseBookmarked) {
         this.exerciseBookmarked = exerciseBookmarked;
+    }
+
+    public int getExerciseTypeId() {
+        return exerciseTypeId;
+    }
+
+    public void setExerciseTypeId(int exerciseTypeId) {
+        this.exerciseTypeId = exerciseTypeId;
     }
 }

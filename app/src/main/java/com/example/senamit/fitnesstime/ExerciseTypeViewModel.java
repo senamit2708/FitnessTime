@@ -14,7 +14,7 @@ import java.util.List;
 public class ExerciseTypeViewModel extends AndroidViewModel {
 
     private FitnessRepository mRepository;
-    private LiveData<List<FitnessExercise>> mFitnessExerciseList;
+    private LiveData<List<FitnessExerciseType>> mFitnessExerciseList;
 
     public ExerciseTypeViewModel(@NonNull Application application) {
         super(application);
@@ -22,7 +22,7 @@ public class ExerciseTypeViewModel extends AndroidViewModel {
         mFitnessExerciseList = mRepository.getFitnessExerciseList();
     }
 
-    public LiveData<List<FitnessExercise>> getmFitnessExerciseList() {
+    public LiveData<List<FitnessExerciseType>> getmFitnessExerciseList() {
         return mFitnessExerciseList;
     }
 }

@@ -27,11 +27,27 @@ public class PopulateDBSync extends AsyncTask<Void, Void, Void>{
         mFitnessExerciseDao.deleteAllExerciseList();
 
         fitnessExerciseList = new ArrayList<FitnessExercise>();
-        fitnessExerciseList.add(new FitnessExercise("priyanka1", "patro1"));
-        fitnessExerciseList.add(new FitnessExercise("priyanka2", "patro2"));
-        fitnessExerciseList.add(new FitnessExercise("priyanka3", "patro3"));
-        fitnessExerciseList.add(new FitnessExercise("priyanka4", "patro4"));
+        fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 1"));
+        fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 2"));
+        fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 3"));
+        fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 4"));
+        fitnessExerciseList.add(new FitnessExercise(1,"BACK", "DeadLift 1"));
+        fitnessExerciseList.add(new FitnessExercise(2,"BACK", "DeadLift 2"));
+        fitnessExerciseList.add(new FitnessExercise(2,"BACK", "DeadLift 3"));
+        fitnessExerciseList.add(new FitnessExercise(2,"BACK", "DeadLift 4"));
+        fitnessExerciseList.add(new FitnessExercise(2,"BACK", "DeadLift 5"));
+        fitnessExerciseList.add(new FitnessExercise(3,"BICEPS", "Dummbbell 1"));
+        fitnessExerciseList.add(new FitnessExercise(3,"BICEPS", "Dummbbell 2"));
+        fitnessExerciseList.add(new FitnessExercise(3,"BICEPS", "Dummbbell 3"));
+
+        List<FitnessExerciseType> fitnessExerciseTypeList = new ArrayList<>();
+        fitnessExerciseTypeList.add(new FitnessExerciseType(1, "ABS"));
+        fitnessExerciseTypeList.add(new FitnessExerciseType(2, "BACK"));
+        fitnessExerciseTypeList.add(new FitnessExerciseType(3, "BICEPS"));
+        fitnessExerciseTypeList.add(new FitnessExerciseType(4, "TRICEPS"));
+
         mFitnessExerciseDao.insertAllExercisesList(fitnessExerciseList);
+        mFitnessExerciseDao.insertAllExerciseType(fitnessExerciseTypeList);
 
 
 

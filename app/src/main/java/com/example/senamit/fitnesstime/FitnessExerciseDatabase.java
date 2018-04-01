@@ -12,7 +12,7 @@ import android.util.Log;
  * Created by senamit on 29/3/18.
  */
 
-@Database(entities = {FitnessExercise.class}, version = 1)
+@Database(entities = {FitnessExercise.class, FitnessExerciseType.class}, version = 1)
 public abstract class FitnessExerciseDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = FitnessExerciseDatabase.class.getSimpleName();
