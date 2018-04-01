@@ -20,8 +20,8 @@ public interface FitnessExerciseDao {
     void  deleteAllExerciseList();
 
     @Query("SELECT * FROM exercise_list")
-    List<FitnessExercise> getAllFitnessExerciseList();
-//    LiveData<List<FitnessExercise>> getAllFitnessExerciseList();
+    LiveData<List<FitnessExercise>> getAllFitnessExerciseList();
+
 
 
 }

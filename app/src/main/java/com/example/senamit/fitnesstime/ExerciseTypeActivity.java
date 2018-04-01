@@ -1,8 +1,6 @@
 package com.example.senamit.fitnesstime;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseTypeActivity extends AppCompatActivity {
@@ -21,7 +18,6 @@ public class ExerciseTypeActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ExerciseTypeAdapter exerciseTypeAdapter;
      ExerciseTypeViewModel mViewModel;
-    List<FitnessExercise> fitnessExerciseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +33,12 @@ public class ExerciseTypeActivity extends AppCompatActivity {
 
 
 
-//        mViewModel.getmFitnessExerciseList().observe(this, new Observer<List<FitnessExercise>>() {
-//            @Override
-//            public void onChanged(@Nullable List<FitnessExercise> fitnessExercises) {
-//                exerciseTypeAdapter.setExercise(fitnessExercises);
-//            }
-//        });
-
-      fitnessExerciseList =  mViewModel.getmFitnessExerciseList();
-        exerciseTypeAdapter.setExercise(fitnessExerciseList);
-        Log.i(LOG_TAG, "inside the oncreate of main activity 5");
+        mViewModel.getmFitnessExerciseList().observe(this, new Observer<List<FitnessExercise>>() {
+            @Override
+            public void onChanged(@Nullable List<FitnessExercise> fitnessExercises) {
+                exerciseTypeAdapter.setExercise(fitnessExercises);
+            }
+        });
 
 
     }
