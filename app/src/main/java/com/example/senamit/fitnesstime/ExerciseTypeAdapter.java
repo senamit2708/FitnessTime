@@ -19,9 +19,12 @@ public class ExerciseTypeAdapter extends RecyclerView.Adapter<ExerciseTypeAdapte
     private static final String LOG_TAG = ExerciseTypeAdapter.class.getSimpleName();
     private Context context;
     private List<FitnessExerciseType> fitnessExerciseList;
+    private ClickListenerExerciseType onClickListener;
 
-    public ExerciseTypeAdapter(Context context) {
+
+    public ExerciseTypeAdapter(Context context, ClickListenerExerciseType onClickListener) {
         this.context = context;
+        this.onClickListener= onClickListener;
     }
 
     @Override
@@ -60,14 +63,28 @@ public class ExerciseTypeAdapter extends RecyclerView.Adapter<ExerciseTypeAdapte
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView txtExerciseName;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            Log.i(LOG_TAG, "inside the constructor of view holder");
             txtExerciseName = itemView.findViewById(R.id.txtExerciseName);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.i(LOG_TAG, "inside the onclick listener");
+            int clickedItemIndex = getAdapterPosition();
+            int exerciseTypeId = fitnessExerciseList.get(clickedItemIndex).getExercise_type_id();
+            onClickListener.onListItemClick(clickedItemIndex, exerciseTypeId);
         }
     }
+
+    public interface ClickListenerExerciseType{
+        void onListItemClick(int clickedItemIndex, int exerciseTypeId);
+
+    }
+
 }
