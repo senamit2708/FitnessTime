@@ -39,18 +39,18 @@ public abstract class FitnessExerciseDatabase extends RoomDatabase {
 
 
         //optionally try to use onopen for dev coding purpose
-//        @Override
-//        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-//            super.onOpen(db);
-//            new PopulateDBSync(INSTANCE).execute();
-//        }
-
         @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            Log.i(LOG_TAG, "inside the callback method of fitnessexercise database");
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
             new PopulateDBSync(INSTANCE).execute();
         }
+
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//            Log.i(LOG_TAG, "inside the callback method of fitnessexercise database");
+//            new PopulateDBSync(INSTANCE).execute();
+//        }
 
     };
 

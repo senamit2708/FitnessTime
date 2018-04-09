@@ -15,8 +15,10 @@ import java.util.List;
 public class FitnessRepository {
 
     private static final String LOG_TAG = FitnessRepository.class.getSimpleName();
+    FitnessExerciseDao fitnessExerciseDao;
 
      LiveData<List<FitnessExerciseType>> fitnessExerciseList;
+     LiveData<List<FitnessExercise>> fitnessExerciseTypeSelected;
     FitnessExerciseDatabase db;
 
 
@@ -24,13 +26,19 @@ public class FitnessRepository {
     public FitnessRepository(Application application) {
         Log.i(LOG_TAG, "inside the fitness repository constructor");
         db = FitnessExerciseDatabase.getDatabase(application);
-        FitnessExerciseDao fitnessExerciseDao=db.fitnessExerciseDao();
+        fitnessExerciseDao=db.fitnessExerciseDao();
         fitnessExerciseList=fitnessExerciseDao.getExerciseTypeList();
+
     }
 
 
     public LiveData<List<FitnessExerciseType>> getFitnessExerciseList() {
         return fitnessExerciseList;
+    }
+
+    public LiveData<List<FitnessExercise>> getFitnessExerciseListNew(int id){
+        fitnessExerciseTypeSelected= fitnessExerciseDao.getFitnessExerciseListNew(id);
+        return fitnessExerciseTypeSelected;
     }
 
 

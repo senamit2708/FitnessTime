@@ -22,7 +22,7 @@ public interface FitnessExerciseDao {
     @Insert
     void insertAllExerciseType(List<FitnessExerciseType> fitnessExerciseType );
 
-    @Query("DELETE FROM exericse_type")
+    @Query("DELETE FROM exercise_type")
     void deleteAllExerciseType();
 
     @Query("DELETE FROM exercise_list")
@@ -32,7 +32,17 @@ public interface FitnessExerciseDao {
     LiveData<List<FitnessExercise>> getAllFitnessExerciseList();
 
 
-    @Query("SELECT * FROM exericse_type")
+    @Query("SELECT * FROM exercise_type")
     LiveData<List<FitnessExerciseType>> getExerciseTypeList();
+
+
+    //JUST FOR LEARNING PURPOSE, WE CAN USE BOTH , BUT ITS GOOD IF WE WRITE CODE IN MINIMUM
+//    @Query("SELECT * FROM exercise_list INNER JOIN exercise_type ON " +
+//            "exercise_list.exercise_type_id =Exercise_type.id WHERE exercise_list.exercise_type_id=:id")
+//    LiveData<List<FitnessExercise>> getFitnessExerciseListNew(int id);
+
+
+    @Query("SELECT * FROM exercise_list WHERE exercise_type_id =:id")
+    LiveData<List<FitnessExercise>> getFitnessExerciseListNew(int id);
 
 }

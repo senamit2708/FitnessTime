@@ -2,16 +2,22 @@ package com.example.senamit.fitnesstime;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+
+import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 
 /**
  * Created by senamit on 27/3/18.
  */
 
-@Entity(tableName = "exercise_list")
+@Entity(tableName = "exercise_list", foreignKeys = @ForeignKey(entity = FitnessExerciseType.class,
+        parentColumns = "id", childColumns = "exercise_type_id", onDelete = CASCADE),
+        indices = @Index(value ="exercise_type_id" ))
 public class FitnessExercise {
 
     @PrimaryKey(autoGenerate = true)
@@ -21,14 +27,18 @@ public class FitnessExercise {
     @ColumnInfo(name = "exercise_type")
     private String exerciseType;
 
-
+    @NonNull
     @ColumnInfo(name = "exercise_type_id")
-    private int exerciseTypeId;
+    private  Integer exerciseTypeId;
 
-//    @PrimaryKey
-//    @NonNull
     @ColumnInfo(name = "exercise_name")
     private String exerciseName;
+
+    public FitnessExercise(@NonNull Integer exerciseTypeId, String exerciseType, String exerciseName) {
+        this.exerciseType = exerciseType;
+        this.exerciseTypeId = exerciseTypeId;
+        this.exerciseName = exerciseName;
+    }
 
     @ColumnInfo(name = "body_part")
     private String exerciseBodyPart;
@@ -42,28 +52,6 @@ public class FitnessExercise {
 
     @ColumnInfo(name = "bookmarked")
     private String exerciseBookmarked;
-
-    @Ignore
-    public FitnessExercise(int exerciseTypeId,String exerciseType, String exerciseName, String exerciseBodyPart, String exerciseWorkOut, String exerciseDescription, String exerciseBookmarked) {
-        this.exerciseTypeId= exerciseTypeId;
-        this.exerciseType = exerciseType;
-        this.exerciseName = exerciseName;
-        this.exerciseBodyPart = exerciseBodyPart;
-        this.exerciseWorkOut = exerciseWorkOut;
-        this.exerciseDescription = exerciseDescription;
-        this.exerciseBookmarked = exerciseBookmarked;
-    }
-
-//    public FitnessExercise(String exerciseName) {
-//        this.exerciseName = exerciseName;
-//    }
-
-
-    public FitnessExercise(int exerciseTypeId, String exerciseType, String exerciseName) {
-        this.exerciseTypeId= exerciseTypeId;
-        this.exerciseType = exerciseType;
-        this.exerciseName = exerciseName;
-    }
 
 
     public int getExercise_id() {
@@ -80,6 +68,15 @@ public class FitnessExercise {
 
     public void setExerciseType(String exerciseType) {
         this.exerciseType = exerciseType;
+    }
+
+    @NonNull
+    public Integer getExerciseTypeId() {
+        return exerciseTypeId;
+    }
+
+    public void setExerciseTypeId(@NonNull Integer exerciseTypeId) {
+        this.exerciseTypeId = exerciseTypeId;
     }
 
     public String getExerciseName() {
@@ -120,13 +117,5 @@ public class FitnessExercise {
 
     public void setExerciseBookmarked(String exerciseBookmarked) {
         this.exerciseBookmarked = exerciseBookmarked;
-    }
-
-    public int getExerciseTypeId() {
-        return exerciseTypeId;
-    }
-
-    public void setExerciseTypeId(int exerciseTypeId) {
-        this.exerciseTypeId = exerciseTypeId;
     }
 }

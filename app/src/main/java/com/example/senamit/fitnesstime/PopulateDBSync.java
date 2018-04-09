@@ -14,7 +14,7 @@ public class PopulateDBSync extends AsyncTask<Void, Void, Void>{
 
     private static final String LOG_TAG = PopulateDBSync.class.getSimpleName();
     private FitnessExerciseDao mFitnessExerciseDao;
-    private List<FitnessExercise> fitnessExerciseList;
+
 
     public PopulateDBSync(FitnessExerciseDatabase db) {
 
@@ -25,8 +25,9 @@ public class PopulateDBSync extends AsyncTask<Void, Void, Void>{
     @Override
     protected Void doInBackground(Void... params) {
         mFitnessExerciseDao.deleteAllExerciseList();
-
-        fitnessExerciseList = new ArrayList<FitnessExercise>();
+        mFitnessExerciseDao.deleteAllExerciseType();
+         List<FitnessExercise> fitnessExerciseList;
+        fitnessExerciseList = new ArrayList<>();
         fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 1"));
         fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 2"));
         fitnessExerciseList.add(new FitnessExercise(1,"ABS", "Chrunches 3"));
@@ -45,9 +46,9 @@ public class PopulateDBSync extends AsyncTask<Void, Void, Void>{
         fitnessExerciseTypeList.add(new FitnessExerciseType(2, "BACK"));
         fitnessExerciseTypeList.add(new FitnessExerciseType(3, "BICEPS"));
         fitnessExerciseTypeList.add(new FitnessExerciseType(4, "TRICEPS"));
+        mFitnessExerciseDao.insertAllExerciseType(fitnessExerciseTypeList);
 
         mFitnessExerciseDao.insertAllExercisesList(fitnessExerciseList);
-        mFitnessExerciseDao.insertAllExerciseType(fitnessExerciseTypeList);
 
 
 

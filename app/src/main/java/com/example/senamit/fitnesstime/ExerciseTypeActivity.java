@@ -49,7 +49,7 @@ public class ExerciseTypeActivity extends AppCompatActivity implements ExerciseT
     public void onListItemClick(int clickedItemIndex, int exerciseTypeId) {
         Log.i(LOG_TAG, "inside the onlistitem click method");
         Intent intent = new Intent(this, ExerciseNamesActivity.class );
-//        intent.putExtra(EXERCISE_TYPE_ID, exerciseTypeId);
+        intent.putExtra(EXERCISE_TYPE_ID, exerciseTypeId);
         startActivity(intent);
 
     }
